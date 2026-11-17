@@ -6,6 +6,12 @@
   --terra:#b9693f;
   --papel:#f6f4ee;
   --u:calc(min(100vw, 480px) / 100);
+  /* ALTO de cada pantalla, medido en "u" (1u = 1% del ancho).
+     222.3 = proporción completa 960x2134. Si el botón de abajo queda tapado
+     por la barra del navegador, baja este número (ej. 200 o 190).
+     script.js lo recalcula solo según el teléfono; este valor es el de respaldo. */
+  --H:200;
+  --f:calc(var(--H) / 222.3);   /* factor de reducción vertical */
 }
 
 html{scroll-behavior:smooth}
@@ -25,7 +31,7 @@ body{
 .screen{
   position:relative;
   width:100%;
-  aspect-ratio:960 / 2134;   /* proporción de teléfono */
+  height:calc(var(--u) * var(--H));
   overflow:hidden;
   background:var(--papel) center / 100% 100% no-repeat;
 }
@@ -35,7 +41,7 @@ body{
 .bg-gatos{background-image:url(img/fondo-gatos.jpg)}
 
 /* Bloque absoluto centrado; la posición vertical viene de --t */
-.abs{position:absolute;left:0;right:0;top:calc(var(--t) * var(--u));margin:0;text-align:center}
+.abs{position:absolute;left:0;right:0;top:calc(var(--t) * var(--u) * var(--f));margin:0;text-align:center}
 
 /* ===== Tipografía ===== */
 .script{
@@ -94,7 +100,7 @@ body{
 /* ===== Arcos ===== */
 .arco{
   position:absolute;
-  left:var(--l);width:var(--w);top:calc(var(--t) * var(--u));height:calc(var(--h) * var(--u));
+  left:var(--l);width:var(--w);top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--h) * var(--u) * var(--f));
   border:1px solid var(--verde);
   border-radius:999px 999px 0 0;
   pointer-events:none;
@@ -105,7 +111,7 @@ body{
   position:absolute;
   bottom:calc(var(--u) * 16.1);
   left:var(--l, 29.6%);width:var(--w, 45.6%);
-  top:calc(var(--t) * var(--u));height:calc(var(--h, 6.6) * var(--u));
+  top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--h, 6.6) * var(--u));
   display:flex;align-items:center;justify-content:center;
   padding:0;
   border:1px solid var(--terra);
@@ -136,7 +142,7 @@ body{
 /* ===== Foto con marco ===== */
 .foto{
   position:absolute;
-  left:18%;width:66.5%;top:calc(var(--t) * var(--u));height:calc(var(--h) * var(--u));
+  left:18%;width:66.5%;top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--h) * var(--u) * var(--f));
   padding:calc(var(--u) * 1.3);
   border:1px solid var(--terra);
   border-radius:calc(var(--u) * 3) 0 calc(var(--u) * 5.6) 0;
@@ -150,7 +156,7 @@ body{
 /* ===== Filas con ícono (gran día / detalles) ===== */
 .fila{
   position:absolute;
-  left:15%;right:4%;top:calc(var(--t) * var(--u));
+  left:15%;right:4%;top:calc(var(--t) * var(--u) * var(--f));
   transform:translateY(-50%);
   display:flex;align-items:center;gap:calc(var(--u) * 3.8);
   text-align:left;
@@ -189,13 +195,13 @@ body{
 .puntos{display:flex;justify-content:center;gap:calc(var(--u) * 5.4)}
 .puntos i{display:block;width:calc(var(--u) * 5);height:calc(var(--u) * 5);border-radius:50%}
 .divisor{
-  position:absolute;left:44.8%;width:9.4%;top:calc(var(--t) * var(--u));
+  position:absolute;left:44.8%;width:9.4%;top:calc(var(--t) * var(--u) * var(--f));
   margin:0;border:0;border-top:1px solid var(--terra);opacity:1;
 }
 
 /* ===== Regalos ===== */
 .enlace-lista{
-  position:absolute;left:27.6%;width:47.8%;top:calc(var(--t) * var(--u));height:calc(var(--u) * 6.8);
+  position:absolute;left:27.6%;width:47.8%;top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--u) * 6.8);
   display:flex;align-items:center;justify-content:center;
   border:1px solid var(--terra);border-radius:999px;
   color:var(--terra);
@@ -204,14 +210,14 @@ body{
   text-decoration:none;white-space:nowrap;
 }
 .qr{
-  position:absolute;left:42.8%;top:calc(var(--t) * var(--u));
+  position:absolute;left:42.8%;top:calc(var(--t) * var(--u) * var(--f));
   width:calc(var(--u) * 17.5);height:auto;
 }
 
 /* ===== Confirmar asistencia ===== */
 .btn-accion{
   position:absolute;
-  left:25.3%;width:47.3%;top:calc(var(--t) * var(--u));height:calc(var(--u) * 6.4);
+  left:25.3%;width:47.3%;top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--u) * 6.4);
   display:flex;align-items:center;justify-content:center;
   padding:0;border:0;border-radius:999px;
   background:var(--terra);color:#fff;
