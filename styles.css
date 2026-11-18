@@ -126,7 +126,7 @@ body{
   text-decoration:none;
 }
 .btn-next:hover,.btn-next:focus-visible{background:var(--terra);color:#fff;border-color:var(--terra)}
-.btn-next .flecha{position:absolute;right:7%;font-weight:300}
+.btn-next .flecha{position:absolute;right:7%;font-weight:400}
 
 /* ===== Pie ===== */
 .pie{
@@ -142,6 +142,7 @@ body{
 /* ===== Foto con marco ===== */
 .foto{
   position:absolute;
+  box-sizing:border-box;margin:0;
   left:18%;width:66.5%;top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--h) * var(--u) * var(--f));
   padding:calc(var(--u) * 1.3);
   border:1px solid var(--terra);
@@ -217,7 +218,7 @@ body{
 /* ===== Confirmar asistencia ===== */
 .btn-accion{
   position:absolute;
-  left:25.3%;width:47.3%;top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--u) * 6.4);
+  left:22.1%;width:49.9%;top:calc(var(--t) * var(--u) * var(--f));height:calc(var(--u) * 7);
   display:flex;align-items:center;justify-content:center;
   padding:0;border:0;border-radius:999px;
   background:var(--terra);color:#fff;
@@ -230,3 +231,8 @@ body{
 .btn-accion:hover,.btn-accion:focus-visible{background:#9f562f;color:#fff}
 
 a:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+
+/* ===== Código de vestimenta: imagen de vestidos y textos a evitar ===== */
+.foto.vestidos img{object-fit:contain;object-position:center;border-radius:0}
+.evitar p{margin:0 0 calc(var(--u) * 3)}
+.evitar p:last-child{margin:0;line-height:1.15}
